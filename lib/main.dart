@@ -6,7 +6,8 @@ void main() {
 
 class PointsCounter extends StatelessWidget {
 
-  const PointsCounter({Key? key}) : super(key: key);
+  int teamAPoints = 0;
+  int teamBPoints = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +40,9 @@ class PointsCounter extends StatelessWidget {
                         ),
                       ),
 
-                      const Text(
-                        '0',
-                        style: TextStyle(
+                      Text(
+                        '$teamAPoints',
+                        style: const TextStyle(
                           fontSize: 150,
                           fontWeight: FontWeight.bold,
                         ),
@@ -93,9 +94,9 @@ class PointsCounter extends StatelessWidget {
                   child: Column(
                     
                     children: [
-                      const Text(
-                        'Team B',
-                        style: TextStyle(
+                      Text(
+                        '$teamBPoints',
+                        style: const TextStyle(
                           fontSize: 32,
                           // fontWeight: FontWeight.bold,
                         ),
