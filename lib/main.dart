@@ -14,7 +14,7 @@ class PointsCounter extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Points Counter',
       theme: ThemeData(
-        primarySwatch: Colors.red,
+        primarySwatch: Colors.yellow,
       ),
       home: Scaffold(
         appBar: AppBar(
