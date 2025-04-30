@@ -94,17 +94,17 @@ class PointsCounter extends StatelessWidget {
                   child: Column(
                     
                     children: [
-                      Text(
-                        '$teamBPoints',
-                        style: const TextStyle(
+                      const Text(
+                        'Team B',
+                        style: TextStyle(
                           fontSize: 32,
                           // fontWeight: FontWeight.bold,
                         ),
                       ),
 
-                      const Text(
-                        '0',
-                        style: TextStyle(
+                      Text(
+                        '$teamBPoints',
+                        style: const TextStyle(
                           fontSize: 150,
                           fontWeight: FontWeight.bold,
                         ),
