@@ -4,8 +4,13 @@ void main() {
   runApp(PointsCounter());
 }
 
-class PointsCounter extends StatelessWidget {
+class PointsCounter extends StatefulWidget {
 
+  @override
+  State<PointsCounter> createState() => _PointsCounterState();
+}
+
+class _PointsCounterState extends State<PointsCounter> {
   int teamAPoints = 0;
   int teamBPoints = 0;
 
@@ -50,7 +55,7 @@ class PointsCounter extends StatelessWidget {
 
                       ElevatedButton(
                         onPressed: () {
-                          // Increment Team A points
+                        setState(() {teamAPoints++;}); // Update the UI
                         },
                         style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(horizontal: 34, vertical: 15),
@@ -60,7 +65,7 @@ class PointsCounter extends StatelessWidget {
                       const SizedBox(height: 10),
                       ElevatedButton(
                         onPressed: () {
-                          // Increment Team A points
+                          setState(() {teamAPoints += 2;});
                         },
                         style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
@@ -70,7 +75,7 @@ class PointsCounter extends StatelessWidget {
                       const SizedBox(height: 10),
                       ElevatedButton(
                         onPressed: () {
-                          // Increment Team A points
+                          setState(() {teamAPoints += 3;});
                         },
                         style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
@@ -112,7 +117,7 @@ class PointsCounter extends StatelessWidget {
 
                       ElevatedButton(
                         onPressed: () {
-                          // Increment Team A points
+                          setState(() {teamBPoints++;});
                         },
                         style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(horizontal: 34, vertical: 15),
@@ -122,7 +127,7 @@ class PointsCounter extends StatelessWidget {
                       const SizedBox(height: 10),
                       ElevatedButton(
                         onPressed: () {
-                          // Increment Team A points
+                          setState(() {teamBPoints += 2;});
                         },
                         style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
@@ -132,7 +137,7 @@ class PointsCounter extends StatelessWidget {
                       const SizedBox(height: 10),
                       ElevatedButton(
                         onPressed: () {
-                          // Increment Team A points
+                          setState(() {teamBPoints += 3;});
                         },
                         style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
@@ -149,7 +154,10 @@ class PointsCounter extends StatelessWidget {
 
             ElevatedButton(
               onPressed: () {
-              // Reset points
+                setState(() {
+                  teamAPoints = 0;
+                  teamBPoints = 0;
+                });
               },
               style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
