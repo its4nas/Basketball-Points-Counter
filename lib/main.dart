@@ -1,10 +1,27 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(PointsCounter());
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+  
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Points Counter',
+      theme: ThemeData(
+        primarySwatch: Colors.yellow,
+      ),
+      home: const PointsCounter(),
+    );
+  }
 }
 
 class PointsCounter extends StatefulWidget {
+  const PointsCounter({super.key});
 
   @override
   State<PointsCounter> createState() => _PointsCounterState();
@@ -16,13 +33,7 @@ class _PointsCounterState extends State<PointsCounter> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Points Counter',
-      theme: ThemeData(
-        primarySwatch: Colors.yellow,
-      ),
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: const Text('Points Counter'),
         ),
@@ -45,13 +56,13 @@ class _PointsCounterState extends State<PointsCounter> {
                         ),
                       ),
 
-                      Text(
+                        Text(
                         '$teamAPoints',
-                        style: const TextStyle(
-                          fontSize: 150,
+                        style: TextStyle(
+                          fontSize: teamAPoints > 99 ? 100 : 150,
                           fontWeight: FontWeight.bold,
                         ),
-                      ),
+                        ),
 
                       ElevatedButton(
                         onPressed: () {
@@ -109,8 +120,8 @@ class _PointsCounterState extends State<PointsCounter> {
 
                       Text(
                         '$teamBPoints',
-                        style: const TextStyle(
-                          fontSize: 150,
+                        style: TextStyle(
+                          fontSize: teamBPoints > 99 ? 100 : 150,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -153,22 +164,48 @@ class _PointsCounterState extends State<PointsCounter> {
             const SizedBox(height: 50),
 
             ElevatedButton(
+  onPressed: () {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Confirm Reset'),
+          content: const Text('Are you sure you want to reset the points?'),
+          actions: [
+            TextButton(
+              child: const Text('Cancel'),
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.black,
+              ),
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+              },
+            ),
+            ElevatedButton(
+              child: const Text('Reset'),
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.black,
+              ),
               onPressed: () {
                 setState(() {
                   teamAPoints = 0;
                   teamBPoints = 0;
                 });
+                Navigator.of(context).pop(); // Close the dialog
               },
-              style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-              ),
-              child: const Text('Reset Points'),
             ),
-
           ],
-          
+        );
+      },
+    );
+  },
+  style: ElevatedButton.styleFrom(
+    padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+  ),
+  child: const Text('Reset Points'),
+)
+          ],
         ),
-      ),
     );
   }
 }
